@@ -5,7 +5,7 @@ public class HealthKiosk {
         System.out.println("Welcome To Your Service Router");
         Scanner input = new Scanner(System.in);
         System.out.print("\nEnter service(P/L/T/C):");
-        char prompt= input.next().charAt(0);
+        char prompt= input.next().toUpperCase().charAt(0);
 
         switch (prompt){
             case 'P'-> System.out.println("Go to Pharmacy");
@@ -18,51 +18,51 @@ public class HealthKiosk {
 
         //Task 2
         double metricValue = 0;
-        System.out.println("Enter Your health metric:(1/2/3)" +
-                "1-BMI, 2 - Dosage round - up, 3- Simple Trig helper.");
+        if (prompt=='T') {
+            System.out.println("Enter Your health metric:(1/2/3)" +
+                    "1-BMI, 2 - Dosage round - up, 3- Simple Trig helper.");
 
-        int prompt1= input.nextInt();
-        if (prompt1 == 1) {
-            System.out.println("Enter your height in metres");
-            double height = input.nextDouble();
-            System.out.println("Enter your weight in kilograms");
-            double weight = input.nextDouble();
-            double BMI = weight / Math.pow(height, 2);
-            double roundedBmi = Math.round(BMI * 10) / 10.0;
-            metricValue = roundedBmi;
+            int prompt1 = input.nextInt();
+            if (prompt1 == 1) {
+                System.out.println("Enter your height in metres");
+                double height = input.nextDouble();
+                System.out.println("Enter your weight in kilograms");
+                double weight = input.nextDouble();
+                double BMI = weight / Math.pow(height, 2);
+                double roundedBmi = Math.round(BMI * 10) / 10.0;
+                metricValue = roundedBmi;
 
-            if (roundedBmi < 18)
-                System.out.println("Underweight");
-            else if ( roundedBmi >= 18.5 && roundedBmi <=24.9)
-                System.out.println("Normal");
-            else if ( roundedBmi >= 25.0 && roundedBmi <=29.9)
-                System.out.println("Overweight");
-            else
-                System.out.println("Obese");
+                if (roundedBmi < 18)
+                    System.out.println("Underweight");
+                else if (roundedBmi >= 18.5 && roundedBmi <= 24.9)
+                    System.out.println("Normal");
+                else if (roundedBmi >= 25.0 && roundedBmi <= 29.9)
+                    System.out.println("Overweight");
+                else
+                    System.out.println("Obese");
 
 
-        } else if (prompt1 == 2) {
-            System.out.print("Enter the required dosage in mg :");
-            double dosage = input.nextDouble();
-            int tablets = (int)Math.ceil(dosage / 250.0);
-            metricValue = tablets;
-            System.out.println("Number of tablets: " + tablets);
+            } else if (prompt1 == 2) {
+                System.out.print("Enter the required dosage in mg :");
+                double dosage = input.nextDouble();
+                int tablets = (int) Math.ceil(dosage / 250.0);
+                metricValue = tablets;
+                System.out.println("Number of tablets: " + tablets);
+            } else if (prompt1 == 3) {
+                System.out.print("\nEnter angle in degrees:");
+                double angle = input.nextDouble();
+                double radians = Math.toRadians(angle);
+
+                double sinAngle = Math.sin(radians);
+                double cosAngle = Math.cos(radians);
+
+                double sinRounded = (Math.round(sinAngle * 1000) / 1000.0);
+                double cosRounded = (Math.round(cosAngle * 1000) / 1000.0);
+
+                System.out.println("sin(" + angle + ") = " + sinRounded);
+                System.out.println("cos(" + angle + ") = " + cosRounded);
+            }
         }
-        else if (prompt1 ==3) {
-            System.out.print("\nEnter angle in degrees:");
-            double angle = input.nextDouble();
-            double radians = Math.toRadians(angle);
-
-            double sinAngle = Math.sin(radians);
-            double cosAngle = Math.cos(radians);
-
-            double sinRounded = (Math.round(sinAngle * 1000) / 1000.0);
-            double cosRounded = (Math.round(cosAngle * 1000) / 1000.0);
-
-            System.out.println("sin(" + angle + ") = " + sinRounded);
-            System.out.println("cos(" + angle + ") = " + cosRounded);
-        }
-
 
         //Task 3
 // First random uppercase letter
